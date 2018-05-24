@@ -17,26 +17,31 @@ public class Room {
     private int soDienThangTruoc;
     private int soDienThangNay;
     private float phongVsTang1;
+    private int nguoi;
+    private float tienNuoc;
     private float result;
-    private Map<Integer, Float> dict;
+    private float soTienPhaiTra;
+    private Map<Integer, Integer> dict;
 
-    public Room(int row, int thangTruoc, int thangNay, float vs) {
+    public Room(int row, int thangTruoc, int thangNay, float vs, float tienNuoc, int nguoi) {
         this.row = row;
         this.soDienThangTruoc = thangTruoc;
         this.soDienThangNay = thangNay;
         this.phongVsTang1 = vs;
+        this.nguoi = nguoi;
+        this.tienNuoc = tienNuoc;
         dict = new HashMap();
-        dict.put(1, 1.5F);
-        dict.put(2, 1.55F);
-        dict.put(3, 1.8F);
-        dict.put(4, 2.3F);
-        dict.put(5, 2.5F);
+        dict.put(1, 1500);
+        dict.put(2, 1550);
+        dict.put(3, 1800);
+        dict.put(4, 2300);
+        dict.put(5, 2500);
         calculate();
     }
     // 1.5, 1.55, 1.8, 2.3, 2.5
     public void calculate() {
         int chechLech = soDienThangNay - soDienThangTruoc;
-        result = dequy(chechLech, 1) + phongVsTang1;
+        result = dequy(chechLech, 1) + phongVsTang1*nguoi;
     }
     
     public float dequy(int chenhLech, int turn) {
@@ -55,7 +60,19 @@ public class Room {
         } 
     }
     
+    public int getRow() {
+        return row;
+    }
+    
     public float getResult() {
         return result;
+    }
+    
+    public void soTienPhaiTra(float tienDienChung) {
+        soTienPhaiTra = result + tienDienChung*nguoi + tienNuoc*nguoi;
+    }
+    
+    public float tienMoiPhong() {
+        return soTienPhaiTra;
     }
 }

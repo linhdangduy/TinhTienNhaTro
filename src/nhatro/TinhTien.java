@@ -16,11 +16,15 @@ import java.util.Map;
  */
 public class TinhTien extends javax.swing.JFrame {
 
+    private int soNguoiDungVS1;
+    private int soNguoi;
     /**
      * Creates new form TinhTien
      */
     public TinhTien() {
         initComponents();
+        soNguoiDungVS1 = 6;
+        soNguoi = 14;
     }
 
     /**
@@ -40,8 +44,9 @@ public class TinhTien extends javax.swing.JFrame {
         textSum = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        textNuoc = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        lblWarning = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,12 +120,15 @@ public class TinhTien extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(textSum, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                            .addComponent(jTextField1))
+                            .addComponent(textNuoc))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(39, 39, 39)
+                                .addComponent(lblWarning, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel4))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,13 +137,14 @@ public class TinhTien extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(textSum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(lblWarning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textNuoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGap(13, 13, 13)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
@@ -158,12 +167,17 @@ public class TinhTien extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        System.out.println("linh");
         String sum = textSum.getText();
         if (sum.isEmpty()) {
-            System.out.println("sum or soDienVs1 empty");
+            lblWarning.setText("sum empty");
             return;
         }
+        String nuoc = textNuoc.getText();
+        float tienNuoc = 0;
+        if (nuoc.isEmpty()) {
+            lblWarning.setText("nuoc empty");
+        } else
+            tienNuoc = Integer.parseInt(nuoc)/soNguoi;
         Integer sumMoney = Integer.valueOf(sum);
         System.out.println("sumMoney: " + sumMoney);
         float tienVS1 = 0;
@@ -172,10 +186,11 @@ public class TinhTien extends javax.swing.JFrame {
             int thangNay = 0;
             int thangTruoc = 0;
             float vs = 0;
-            for (int j = 1; j < 4; j++) {
+            int nguoi = 0;
+            for (int j = 1; j < 5; j++) {
                 Object cell = table.getValueAt(i, j);
                 if (cell == null) {
-                    System.out.println("chua nhap o " + i + "," + j);
+                    lblWarning.setText("chua nhap o " + i + "," + j);
                     return;
                 }
                 if (j == 1) {
@@ -183,19 +198,31 @@ public class TinhTien extends javax.swing.JFrame {
                 } else if (j == 2) {
                     thangNay = Integer.parseInt(cell.toString());
                 } else {
-                    if (i != 0) {
-                        if (Boolean.valueOf(cell.toString()) == true) {
-                            vs = tienVS1/6;
-                        }
+                    if (i == 0) {
+                        break;
+                    }
+                    if (j == 3 && Boolean.valueOf(cell.toString()) == true) {
+                        vs = tienVS1/soNguoiDungVS1;
+                    } else if (j == 4) {
+                        nguoi = Integer.parseInt(cell.toString());
                     }
                 }
             }
-            Room room = new Room(i, thangTruoc, thangNay, vs);
+            Room room = new Room(i, thangTruoc, thangNay, vs, tienNuoc, nguoi);
             if (i == 0) {
                 tienVS1 = room.getResult();
             } else {
                 rooms.add(room);            
             }
+        }
+        float tongSoDienCacPhong = 0;
+        for (Room r: rooms) {
+            tongSoDienCacPhong += r.getResult();
+        }
+        float soDienChungChiaDauNguoi = (sumMoney-tongSoDienCacPhong)/soNguoi;
+        for (Room r: rooms) {
+            r.soTienPhaiTra(soDienChungChiaDauNguoi);
+            table.setValueAt(r.tienMoiPhong(), r.getRow(), 5);
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -243,8 +270,9 @@ public class TinhTien extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblWarning;
     private javax.swing.JTable table;
+    private javax.swing.JTextField textNuoc;
     private javax.swing.JTextField textSum;
     // End of variables declaration//GEN-END:variables
 }
