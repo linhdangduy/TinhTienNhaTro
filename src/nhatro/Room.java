@@ -69,7 +69,8 @@ public class Room {
     }
     
     public void soTienPhaiTra(float tienDienChung) {
-        soTienPhaiTra = result + tienDienChung*nguoi + tienNuoc*nguoi;
+//        soTienPhaiTra = result + tienDienChung*nguoi + tienNuoc*nguoi;
+        soTienPhaiTra = result  + tienNuoc*nguoi;
     }
     
     public float tienMoiPhong() {

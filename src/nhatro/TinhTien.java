@@ -23,8 +23,45 @@ public class TinhTien extends javax.swing.JFrame {
      */
     public TinhTien() {
         initComponents();
-        soNguoiDungVS1 = 6;
-        soNguoi = 14;
+        soNguoiDungVS1 = 5;
+        soNguoi = 12;
+        textSum.setText(String.valueOf(1635689));
+        textNuoc.setText(String.valueOf(360000));
+        lblTongNguoi.setText("Có tất cả 12 người");
+        lblNguoiVs1.setText("có 5 người dùng vs tầng 1");
+        
+        table.setValueAt(743, 0, 1);
+        table.setValueAt(780, 0, 2);
+
+        table.setValueAt(286, 1, 1);
+        table.setValueAt(377, 1, 2);
+        table.setValueAt(true, 1, 3);
+        table.setValueAt(1, 1, 4);
+        
+        table.setValueAt(285, 2, 1);
+        table.setValueAt(357, 2, 2);
+        table.setValueAt(true, 2, 3);
+        table.setValueAt(1, 2, 4);
+        
+        table.setValueAt(20831, 3, 1);
+        table.setValueAt(21031, 3, 2);
+        table.setValueAt(false, 3, 3);
+        table.setValueAt(4, 3, 4);
+        
+        table.setValueAt(663, 4, 1);
+        table.setValueAt(766, 4, 2);
+        table.setValueAt(true, 4, 3);
+        table.setValueAt(2, 4, 4);
+        
+        table.setValueAt(11237, 5, 1);
+        table.setValueAt(11592, 5, 2);
+        table.setValueAt(false, 5, 3);
+        table.setValueAt(3, 5, 4);
+        
+        table.setValueAt(730, 6, 1);
+        table.setValueAt(934, 6, 2);
+        table.setValueAt(true, 6, 3);
+        table.setValueAt(1, 6, 4);
     }
 
     /**
@@ -46,7 +83,10 @@ public class TinhTien extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         textNuoc = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        lblWarning = new javax.swing.JLabel();
+        lblTongtienDien = new javax.swing.JLabel();
+        lblNguoiVs1 = new javax.swing.JLabel();
+        lblTongNguoi = new javax.swing.JLabel();
+        lblchenhLech = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,7 +134,7 @@ public class TinhTien extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Tổng tiền");
+        jLabel1.setText("Hóa đơn điện");
 
         jLabel2.setText("vnd");
 
@@ -110,7 +150,7 @@ public class TinhTien extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(213, 213, 213)
+                        .addGap(210, 210, 210)
                         .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
@@ -123,32 +163,43 @@ public class TinhTien extends javax.swing.JFrame {
                             .addComponent(textNuoc))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(39, 39, 39)
-                                .addComponent(lblWarning, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4))))
-                .addContainerGap(63, Short.MAX_VALUE))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4))
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblchenhLech, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblTongtienDien, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                                .addComponent(lblTongNguoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblNguoiVs1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(textSum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(lblWarning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(textSum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2))
+                    .addComponent(lblTongtienDien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblchenhLech, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(textNuoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(13, 13, 13)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(textNuoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4))
+                    .addComponent(lblTongNguoi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblNguoiVs1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(85, 85, 85))
+                .addGap(42, 42, 42))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -169,16 +220,16 @@ public class TinhTien extends javax.swing.JFrame {
         // TODO add your handling code here:
         String sum = textSum.getText();
         if (sum.isEmpty()) {
-            lblWarning.setText("sum empty");
+            lblTongtienDien.setText("sum empty");
             return;
         }
         String nuoc = textNuoc.getText();
         float tienNuoc = 0;
         if (nuoc.isEmpty()) {
-            lblWarning.setText("nuoc empty");
+            lblTongtienDien.setText("nuoc empty");
         } else
             tienNuoc = Integer.parseInt(nuoc)/soNguoi;
-        Integer sumMoney = Integer.valueOf(sum);
+        float sumMoney = Float.parseFloat(sum);
         System.out.println("sumMoney: " + sumMoney);
         float tienVS1 = 0;
         List<Room> rooms = new ArrayList();
@@ -190,8 +241,10 @@ public class TinhTien extends javax.swing.JFrame {
             for (int j = 1; j < 5; j++) {
                 Object cell = table.getValueAt(i, j);
                 if (cell == null) {
-                    lblWarning.setText("chua nhap o " + i + "," + j);
-                    return;
+                    lblTongtienDien.setText("chua nhap o " + i + "," + j);
+                    if (j==3) {
+                        cell = false;
+                    }
                 }
                 if (j == 1) {
                     thangTruoc = Integer.parseInt(cell.toString());
@@ -220,11 +273,17 @@ public class TinhTien extends javax.swing.JFrame {
             tongSoDienCacPhong += r.getResult();
         }
         float soDienChungChiaDauNguoi = (sumMoney-tongSoDienCacPhong)/soNguoi;
+        System.out.println("so tien cac phong:" + tongSoDienCacPhong);
+        System.out.println(soDienChungChiaDauNguoi*soNguoi);
         for (Room r: rooms) {
             r.soTienPhaiTra(soDienChungChiaDauNguoi);
             table.setValueAt(r.tienMoiPhong(), r.getRow(), 5);
         }
-        
+        for (Room r: rooms) {
+            sumMoney -= r.tienMoiPhong();
+        }
+        lblTongtienDien.setText("tổng tiền điện các phòng: " + tongSoDienCacPhong);
+        lblchenhLech.setText("(hóa đơn) - (tổng tiền điện các phòng): " + soDienChungChiaDauNguoi*soNguoi);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -270,7 +329,10 @@ public class TinhTien extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblWarning;
+    private javax.swing.JLabel lblNguoiVs1;
+    private javax.swing.JLabel lblTongNguoi;
+    private javax.swing.JLabel lblTongtienDien;
+    private javax.swing.JLabel lblchenhLech;
     private javax.swing.JTable table;
     private javax.swing.JTextField textNuoc;
     private javax.swing.JTextField textSum;
